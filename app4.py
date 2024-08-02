@@ -64,7 +64,7 @@ if st.button("Generate Report"):
         
         # Perform Google search
         search_results = google_search(user_input, google_api_key, google_cse_id)
-        search_text = "\n".join([result['snippet'] for result in search_results])
+        search_text = "\n".join([result['snippet'] for result in search_results if 'snippet' in result])
         
         # Create the prompt
         if document_text:

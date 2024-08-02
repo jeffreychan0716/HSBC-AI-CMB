@@ -4,6 +4,7 @@ import google.generativeai as genai
 from googleapiclient.discovery import build
 from PyPDF2 import PdfReader
 import docx
+from PIL import Image
 
 # Function to convert text to markdown
 def to_markdown(text):
@@ -39,8 +40,17 @@ genai.configure(api_key='AIzaSyB12Lm7FTjE61acrZF2qLKdLyHbAAmzi94')
 model = genai.GenerativeModel('gemini-1.5-flash')
 
 # Streamlit interface
-st.image("hsbc_logo.jpg", width=150)
-st.title("CARM Generator")
+# Load the logo image
+logo = Image.open('hsbc_logo.jpg')
+
+# Create a layout with the logo on the left
+col1, col2 = st.columns([1, 3])
+
+with col1:
+    st.image(logo, use_column_width=True)
+
+with col2:
+    st.title("CMB AI 2.0 - KYC")
 
 # User input for company name
 user_input = st.text_input("Please enter the company name:")
@@ -65,12 +75,12 @@ if st.button("Generate Report"):
         # Perform Google search
         search_results = google_search(user_input, google_api_key, google_cse_id)
         search_text = "\n".join([result['snippet'] for result in search_results if 'snippet' in result])
-        
+
         # Create the prompt
         if document_text:
-            prompt = f"Generate me a report that includes 1) Company background, 2) Business Segment, 3) Management Team , 4) Most Recent Financial Ratios in table format (profitability, solvency, liquidity, etc) of the following company: {user_input}. Use your own knowledge, internet sources, and the following document: {document_text}. Additionally, include information from these search results: {search_text}"
+            prompt = f"Generate me a report that includes 1) Company background in bullet point, 2) Business Segments in table format (better with data about the distribution), 3) Management Team in table format, 4) Most Recent 20 Financial Ratios in table format (profitability, solvency, liquidity, etc), 5) Major risks of the following company: {user_input}. Use your own knowledge, internet sources, and the following document: {document_text}. Additionally, include information from these search results: {search_text}"
         else:
-            prompt = f"Generate me a report that includes 1) Company background, 2) Business Segment, 3) Management Team, 4) Most Recent Financial Ratios in table format (profitability, solvency, liquidity, etc) of the following company: {user_input}. Use your own knowledge and internet sources. Additionally, include information from these search results: {search_text}"
+            prompt = f"Generate me a report that includes 1) Company background in bullet point, 2) Business Segments in table format(better with data about the distribution), 3) Management Team in table format, 4) Most Recent 20 Financial Ratios in table format (profitability, solvency, liquidity, etc), 5) Major risks of the following company: {user_input}. Use your own knowledge and internet sources. Additionally, include information from these search results: {search_text}"
         
         response = model.generate_content(prompt)
         
@@ -79,5 +89,3 @@ if st.button("Generate Report"):
         st.markdown(to_markdown(response.text))
     else:
         st.warning("Please enter a company name.")
-
-# Replace 'YOUR_GOOGLE_SEARCH_API_KEY' and 'YOUR_CUSTOM_SEARCH_ENGINE_ID' with your actual credentials

@@ -68,7 +68,7 @@ if st.button("Generate Report"):
         
         # Create the prompt
         if document_text:
-            prompt = f"Generate me a report that includes 1) Company background, 2) Business Segment, 3) Management Team, 4) Most Recent Financial Ratios in table format (profitability, solvency, liquidity, etc) of the following company: {user_input}. Use your own knowledge, internet sources, and the following document: {document_text}. Additionally, include information from these search results: {search_text}"
+            prompt = f"Generate me a report that includes 1) Company background, 2) Business Segment, 3) Management Team , 4) Most Recent Financial Ratios in table format (profitability, solvency, liquidity, etc) of the following company: {user_input}. Use your own knowledge, internet sources, and the following document: {document_text}. Additionally, include information from these search results: {search_text}"
         else:
             prompt = f"Generate me a report that includes 1) Company background, 2) Business Segment, 3) Management Team, 4) Most Recent Financial Ratios in table format (profitability, solvency, liquidity, etc) of the following company: {user_input}. Use your own knowledge and internet sources. Additionally, include information from these search results: {search_text}"
         

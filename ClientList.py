@@ -79,9 +79,9 @@ if st.button("Generate Report"):
 
         # Create the prompt
         if document_text:
-            prompt = f"Generate me a report that includes 1) latest market trend, 2) top 100 companies headquartered/ based in {user_input_regions} (include chinese, english name, stock code if listed, revenue, webiste and main business) in table format, of the following industry: {user_input_industry}. Use your own knowledge, internet sources, and the following document: {document_text}. Additionally, include information from these search results: {search_text}"
+            prompt = f"Generate me a report that includes 1) latest market trend, 2) top 100 companies headquartered in {user_input_regions} (include chinese, english name, stock code if listed, revenue, webiste and main business) in table format, of the following industry: {user_input_industry}. Use your own knowledge, internet sources, and the following document: {document_text}. Additionally, include information from these search results: {search_text}"
         else:
-            prompt = f"Generate me a report that includes 1) latest market trend, 2) top 100 companies headquartered/ based in {user_input_regions} (include chinese, english name, stock code if listed, revenue, webiste and main business) in table format, of the following industry: {user_input_industry}. Use your own knowledge and internet sources. Additionally, include information from these search results: {search_text}"
+            prompt = f"Generate me a report that includes 1) latest market trend, 2) top 100 companies headquartered in {user_input_regions} (include chinese, english name, stock code if listed, revenue, webiste and main business) in table format, of the following industry: {user_input_industry}. Use your own knowledge and internet sources. Additionally, include information from these search results: {search_text}"
         
         response = model.generate_content(prompt)
         

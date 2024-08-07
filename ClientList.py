@@ -50,7 +50,7 @@ with col1:
     st.image(logo, use_column_width=True)
 
 with col2:
-    st.title("CMB AI 2.0 - Prospective Clients")
+    st.title("CMBFlash - Prospective Clients")
 
 # User input for industry and regions
 user_input_industry = st.text_input("Please enter the industry:", key='industry_input')

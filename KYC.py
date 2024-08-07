@@ -50,7 +50,7 @@ with col1:
     st.image(logo, use_column_width=True)
 
 with col2:
-    st.title("CMB AI 2.0 - KYC")
+    st.title("CMBFlash - KYC")
 
 # User input for company name
 user_input = st.text_input("Please enter the company name:")

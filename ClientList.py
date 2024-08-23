@@ -1,4 +1,4 @@
-wrong code to deactive it
+import wrong code to deactive it
 
 import streamlit as st
 import textwrap

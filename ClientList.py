@@ -1,6 +1,3 @@
-# Wrong code to deactivate it
-import wrong code to deactivate it
-
 import streamlit as st
 import textwrap
 import google.generativeai as genai
